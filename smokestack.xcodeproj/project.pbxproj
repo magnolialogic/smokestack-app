@@ -39,7 +39,6 @@
 		ACDEA28325DA02090036B374 /* FrontPorch.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDEA28225DA02090036B374 /* FrontPorch.swift */; };
 		ACE22EB2275864CE00C71537 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = ACE22EB1275864CE00C71537 /* Starscream */; };
 		ACE22EB4275866D400C71537 /* StarscreamClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE22EB3275866D400C71537 /* StarscreamClient.swift */; };
-		ACE22EB72758A2B600C71537 /* SmokestackToolbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE22EB62758A2B600C71537 /* SmokestackToolbox.swift */; };
 		ACE22EB92758A3E000C71537 /* Vapor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE22EB82758A3E000C71537 /* Vapor.swift */; };
 		ACE22EBB275981B800C71537 /* Smoker.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE22EBA275981B800C71537 /* Smoker.swift */; };
 		ACE22EBF275981F600C71537 /* Flags.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE22EBE275981F600C71537 /* Flags.swift */; };
@@ -82,7 +81,6 @@
 		ACDEA27F25D9F9AF0036B374 /* ViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
 		ACDEA28225DA02090036B374 /* FrontPorch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrontPorch.swift; sourceTree = "<group>"; };
 		ACE22EB3275866D400C71537 /* StarscreamClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarscreamClient.swift; sourceTree = "<group>"; };
-		ACE22EB62758A2B600C71537 /* SmokestackToolbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmokestackToolbox.swift; sourceTree = "<group>"; };
 		ACE22EB82758A3E000C71537 /* Vapor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vapor.swift; sourceTree = "<group>"; };
 		ACE22EBA275981B800C71537 /* Smoker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Smoker.swift; sourceTree = "<group>"; };
 		ACE22EBE275981F600C71537 /* Flags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flags.swift; sourceTree = "<group>"; };
@@ -139,7 +137,6 @@
 		AC256F9125D077910056D156 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				ACE22EB62758A2B600C71537 /* SmokestackToolbox.swift */,
 				ACE22EB3275866D400C71537 /* StarscreamClient.swift */,
 				AC444E3E26704D8A00A8C2C2 /* Structures.swift */,
 				AC444E3C26704D4500A8C2C2 /* Extensions.swift */,
@@ -370,7 +367,6 @@
 				AC35A8432696985B0064D81B /* PowerButton.swift in Sources */,
 				AC444E472671392300A8C2C2 /* OfflineOverlay.swift in Sources */,
 				AC4BE6F62662CB8E007561EA /* NeumorphicCard.swift in Sources */,
-				ACE22EB72758A2B600C71537 /* SmokestackToolbox.swift in Sources */,
 				ACE22EBF275981F600C71537 /* Flags.swift in Sources */,
 				AC004463265339B300768DAD /* VisualEffectBlur.swift in Sources */,
 				ACDEA28025D9F9AF0036B374 /* ViewModifiers.swift in Sources */,

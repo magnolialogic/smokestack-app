@@ -20,12 +20,6 @@ public class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCen
 	// didFinishLaunchingWithOptions callback to claim UNUserNotificationCenterDelegate, check Sign In With Apple State, and registers for network reachability updates
 	// Handles push notification via launchOptions if app is not running and user taps on notification
 	public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-//		if ProcessInfo.processInfo.arguments.contains("-skipSignInWithApple") {
-//			Server.shared.userID = "1234"
-//			Session.shared.SIWASetupDone = true
-//		} else {
-//			Session.shared.getSIWACredentialState()
-//		}
 		UNUserNotificationCenter.current().delegate = self
 		SmokestackPermissions.shared.getSIWACredentialState()
 		let networkMonitor = NWPathMonitor()
@@ -61,7 +55,7 @@ public class AppDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCen
 		}
 		guard let aps = userInfo["aps"] as? [String: AnyObject], aps["content-available"] as? Int == 1,
 			  let data = try? JSONSerialization.data(withJSONObject: userInfo["data"] as Any),
-			  let smokeReport = try? SmokestackToolbox.shared.jsonDecoder.decode(SmokeReport.self, from: data) else {
+			  let smokeReport = try? JSONDecoder().decode(SmokeReport.self, from: data) else {
 				  MLLogger.error("data does not conform to SmokeReport.self")
 				  completionHandler(.failed)
 				  return

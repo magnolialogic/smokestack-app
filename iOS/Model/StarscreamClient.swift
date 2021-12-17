@@ -43,7 +43,7 @@ class StarscreamClient: WebSocketDelegate {
 			self.connected = false
 		case .binary(let data):
 			do {
-				let smokeReport = try SmokestackToolbox.shared.jsonDecoder.decode(SmokeReport.self, from: data)
+				let smokeReport = try JSONDecoder().decode(SmokeReport.self, from: data)
 				VaporClient.shared.handleSmokeReport(smokeReport)
 			} catch {
 				MLLogger.error("binary data does not conform to WebSocketReport.self")

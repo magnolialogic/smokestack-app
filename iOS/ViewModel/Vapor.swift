@@ -11,6 +11,9 @@ import MLCommon
 import CoreSmokestack
 
 final class VaporClient: ObservableObject {
+	private let jsonEncoder = JSONEncoder()
+	private let jsonDecoder = JSONDecoder()
+	
 	private init() {
 		if SmokestackFlags.shared.setupDone && SmokestackFlags.shared.networkReachable {
 			Task {
@@ -18,6 +21,7 @@ final class VaporClient: ObservableObject {
 			}
 		}
 	}
+	
 	static let shared = VaporClient()
 	
 	let webSocket = StarscreamClient()
@@ -175,7 +179,7 @@ extension VaporClient {
 		request.setBasicAuth(username: "app", password: secretKey)
 		request.setContentType("application/json")
 		request.timeoutInterval = 10
-		guard let httpBody = try? SmokestackToolbox.shared.jsonEncoder.encode(["deviceToken": VaporClient.shared.deviceToken]) else {
+		guard let httpBody = try? jsonEncoder.encode(["deviceToken": VaporClient.shared.deviceToken]) else {
 			MLLogger.error("failed to encode payload JSON")
 			return
 		}
@@ -217,7 +221,7 @@ extension VaporClient {
 				return
 			}
 			if response.statusCode == 200 {
-				guard let responseBody = try? SmokestackToolbox.shared.jsonDecoder.decode([String: String].self, from: data) else {
+				guard let responseBody = try? jsonDecoder.decode([String: String].self, from: data) else {
 					MLLogger.error("Response body does not conform to [String: String].self")
 					return
 				}
@@ -297,7 +301,7 @@ extension VaporClient {
 		
 		MLLogger.console(String(describing: response))
 		
-		let state = try SmokestackToolbox.shared.jsonDecoder.decode(SmokeState.self, from: data)
+		let state = try jsonDecoder.decode(SmokeState.self, from: data)
 		if SmokerClient.shared.state != state {
 			await MainActor.run {
 				SmokerClient.shared.state = state
@@ -323,7 +327,7 @@ extension VaporClient {
 		
 		// Send HTTP request
 		let session = URLSession.shared
-		session.dataTask(with: request) { (data, response, error) in
+		session.dataTask(with: request) { [self] (data, response, error) in
 			guard error == nil else {
 				MLLogger.error(error!.localizedDescription)
 				return
@@ -341,7 +345,7 @@ extension VaporClient {
 					return
 				}
 				do {
-					let stepData = try SmokestackToolbox.shared.jsonDecoder.decode([SmokeStep].self, from: data)
+					let stepData = try jsonDecoder.decode([SmokeStep].self, from: data)
 					MLLogger.console("\(request.httpMethod! as NSObject) \(requestURL) [responseCode: \(response.statusCode), responseData: \(stepData)]")
 					for entry in stepData {
 						steps.append(entry)
@@ -377,7 +381,7 @@ extension VaporClient {
 		if SmokerClient.shared.program != nil {
 			request.httpMethod = "POST"
 			do {
-				let httpRequestData = try SmokestackToolbox.shared.jsonEncoder.encode(SmokerClient.shared.program)
+				let httpRequestData = try jsonEncoder.encode(SmokerClient.shared.program)
 				request.httpBody = httpRequestData
 			} catch {
 				MLLogger.error("failed to encode JSON")
@@ -430,7 +434,7 @@ extension VaporClient {
 		request.timeoutInterval = 10
 		let authorizationCredentials = "app:\(VaporClient.shared.secretKey)".data(using: .utf8)!.base64EncodedString()
 		request.setValue("Basic \(authorizationCredentials)", forHTTPHeaderField: "Authorization")
-		guard let httpBody = try? SmokestackToolbox.shared.jsonEncoder.encode(body) else {
+		guard let httpBody = try? jsonEncoder.encode(body) else {
 			MLLogger.error("failed to encode payload JSON \(body)")
 			return
 		}
