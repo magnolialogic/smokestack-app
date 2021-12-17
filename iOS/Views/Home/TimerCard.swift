@@ -1,6 +1,6 @@
 /*
  *  TimerCard.swift
- *  https://github.com/magnolialogic/swiftui-smokestack_app
+ *  https://github.com/magnolialogic/smokestack-app
  *
  *  © 2021-Present @magnolialogic
  */

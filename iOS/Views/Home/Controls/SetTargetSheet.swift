@@ -1,9 +1,9 @@
-//
-//  SetTargetSheet.swift
-//  smokestack
-//
-//  Created by Chris Coffin on 12/14/21.
-//
+/*
+ *  SetTargetSheet
+ *  https://github.com/magnolialogic/smokestack-app
+ *
+ *  © 2021-Present @magnolialogic
+ */
 
 import SwiftUI
 
