@@ -54,7 +54,7 @@ struct GrillCard: View {
 							.temperatureKey()
 							.padding(.bottom, 12)
 						
-						Text("\(smoker.state.temps[.grillCurrent]?.formatted() ?? "NA")")
+						Text("\(smoker.state.temps[.grillTarget]?.formatted() ?? "NA")")
 							.temperatureValue(type: .grillTarget)
 							.frame(width: geometry.size.width - 40, height: 25, alignment: .bottomLeading)
 						
