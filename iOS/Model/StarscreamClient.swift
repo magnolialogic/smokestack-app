@@ -14,8 +14,16 @@ class StarscreamClient: WebSocketDelegate {
 	var connected = false {
 		didSet {
 			MLLogger.console(String(describing: connected))
+			if connected {
+				retryConnection = true
+			} else if retryConnection { // If disconnected, retry connection once (in case of server restart)
+				retryConnection = false
+				connect()
+			}
 		}
 	}
+	
+	var retryConnection = true
 	
 	var socket: WebSocket?
 	
